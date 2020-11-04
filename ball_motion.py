@@ -16,8 +16,8 @@ def ball_motion(t,y,params):
     m_b = params[3] # ball mass
     r_b = params[4] # ball radius
     C_d = params[5] # drag coefficient
-    A = np.pi*(r_b)**2
+    A = np.pi*(r_b)**2 # cross sectional area
     
-    dydt = g - (ro*C_d*A*y**2)/(2*m_b)
+    dydt = g - (ro*C_d*A*y**2)/(2*m_b) # the ode function dv/dt
     
     return dydt 
