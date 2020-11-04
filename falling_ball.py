@@ -10,7 +10,9 @@ import matplotlib.pyplot as plt
 ball_type = ["steel","wood","pingpong"]
 m = [0.225,0.021,0.002] #varying mass kg
 d = [0.038,0.0367,0.0374] #varying diameter m
-r = 0.5*d # varying radius m
+r = [] 
+for i in range(len(d)):
+    r.append(0.5*d[i]) #varying radii m
 params1 = [9.81,1.2,m[0],r[0],0.4] #constants gravity, air density, mass, radius, drag coefficient
 params2 = [9.81,1.2,m[1],r[1],0.4]
 params3 = [9.81,1.2,m[2],r[2],0.4]
