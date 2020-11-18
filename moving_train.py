@@ -2,7 +2,7 @@
 """
 Kristen Pimentel 
 u1263226 
-ME EN 2450: Lab 8: Moving train
+ME EN 2450: Lab 9: Moving train
 3 November 2020
 """
 
@@ -28,10 +28,10 @@ lp = 0.1 #m piston stroke length
 rg = 0.01 #m gear radius
 x0 = 0
 v0 = 0
-y0 = [x0,v0] #initial conditions
-n = 10
+y0 = [v0,x0] #initial conditions
 
-tspan = np.linspace(0,10,11)
+
+tspan = np.linspace(0,3.5,100)
 params = [g,ro,m,A,Cd,Crr,mw,mu,Pgauge,rw,rp,rg,lp]
 
 odefun = lambda t,y: train_motion(t,y,params) 
@@ -41,12 +41,12 @@ t,y1 = runge_kutta_four(odefun,tspan,y0)
 #print(t)
 #print(y)
 plt.figure(1)
-plt.plot(t,y1[1],label = "velocity")
+plt.plot(t,y1[0],label = "velocity")
 plt.xlabel("Time(s)")
 plt.ylabel("Velocity(m/s)")
 plt.title("Velocity vs. Time of Train Motion")
 plt.figure(2)
-plt.plot(t,y1[0],label = "position")
+plt.plot(t,y1[1],label = "position")
 plt.xlabel("Time(s)")
 plt.ylabel("Position(m)")
 plt.title("Position vs. Time of Train Motion")
