@@ -2,7 +2,7 @@
 """
 Kristen Pimentel 
 u1263226 
-ME EN 2450: Lab 8: Train Motion
+ME EN 2450: Lab 9: Train Motion
 3 November 2020
 """
 import numpy as np
@@ -15,7 +15,7 @@ def train_motion(t,y,params):
     A = params[3] #frontal area
     Cd = params[4] #drag coefficient
     Crr = params[5] #rolling coefficient of friction
-    mw = params[6] #Propulsion force
+    mw = params[6] #wheel mass
     mu = params[7] #coefficient of static friction
     Pg = params[8] #Pa tank gauge pressure
     rw = params[9] #wheel radius
@@ -38,7 +38,7 @@ def train_motion(t,y,params):
     #Ft = T/rw - mw*rw*alpha
     #Ft = (rg*(Pgauge*Ap))/rw - mw*a
     
-    dxdt = y
+    dxdt = y[0]
     
     Fd = (ro*Cd*A*(dxdt)**2)/2
     Frr = m*g*Crr
@@ -48,7 +48,7 @@ def train_motion(t,y,params):
     if Ft > (mu*(m+mw)/2*g):
         raise ValueError("Wheel slip has occured")
         
-    if y <= La:
+    if y[1] <= La:
         dvdt = (Ft - Fd - Frr)/(m + mw)
     else:
         dvdt = -Fd -Frr
@@ -56,4 +56,5 @@ def train_motion(t,y,params):
     dydt = [dvdt,dxdt]
     
     return dydt 
+        
         
